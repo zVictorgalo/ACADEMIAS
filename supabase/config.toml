@@ -1,0 +1,6 @@
+project_id = "pulso-academia"
+
+# A função usa autenticação própria de ID/PIN e exige um segredo do Worker.
+# Desabilitar o JWT da plataforma não torna a função pública: o gateway é validado no código.
+[functions.pulso-api]
+verify_jwt = false

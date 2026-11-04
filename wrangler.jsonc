@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "academias",
+  "main": "cloudflare/worker.ts",
+  "compatibility_date": "2026-11-03",
+  "secrets": { "required": ["SUPABASE_FUNCTION_URL", "PULSO_GATEWAY_SECRET"] },
+  "assets": {
+    "directory": "./dist/cloudflare",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true }
+}

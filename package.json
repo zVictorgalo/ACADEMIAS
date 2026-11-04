@@ -1,0 +1,31 @@
+{
+  "name": "pulso-academia",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build-cloudflare.mjs",
+    "dev:cloudflare": "npm run build && wrangler dev",
+    "check": "tsc --noEmit",
+    "test:cloudflare": "node --experimental-strip-types --test cloudflare/tests/*.test.ts",
+    "test:database": "node --experimental-strip-types --test cloudflare/tests/database.test.ts",
+    "deploy:cloudflare": "npm run build && wrangler deploy",
+    "deploy:dry-run": "npm run build && wrangler deploy --dry-run --outdir .cloudflare-dry-run",
+    "import:supabase": "node scripts/import-supabase.mjs"
+  },
+  "dependencies": {
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@types/pg": "8.23.1",
+    "@types/qrcode": "1.5.6",
+    "esbuild": "0.28.2",
+    "pg": "8.23.1",
+    "typescript": "7.0.2",
+    "wrangler": "4.157.0"
+  }
+}

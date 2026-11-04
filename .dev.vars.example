@@ -1,0 +1,4 @@
+# Copie para .dev.vars para testar com Wrangler. Não publique o arquivo real.
+SUPABASE_FUNCTION_URL=https://SEU-PROJETO.supabase.co/functions/v1/pulso-api
+# Gere uma chave aleatória de 64 caracteres e use a MESMA no Worker e na Edge Function.
+PULSO_GATEWAY_SECRET=SUBSTITUA-POR-UMA-CHAVE-ALEATORIA

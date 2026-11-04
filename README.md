@@ -4,6 +4,8 @@ Aplicação em Python/Django, interface responsiva em português, banco SQLite e
 
 Para entender a função de cada arquivo, leia **[GUIA-ARQUIVOS.md](GUIA-ARQUIVOS.md)**.
 
+Para publicar a versão online, configurar secrets e importar seus cadastros, siga **[DEPLOY-CLOUDFLARE.md](DEPLOY-CLOUDFLARE.md)**.
+
 ## Como funciona agora
 
 - O aluno se cadastra com nome, e-mail e **PIN de 4 a 32 números**. Não escolhe nome de usuário: o sistema gera um **ID numérico único**, exibido na confirmação e na lista administrativa.

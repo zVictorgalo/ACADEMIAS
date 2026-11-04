@@ -8,3 +8,15 @@ staticfiles/
 .coverage
 htmlcov/
 .DS_Store
+node_modules/
+dist/
+.wrangler/
+.cloudflare-dry-run/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env.supabase
+private-exports/
+supabase/.env.functions
+supabase/.temp/
+supabase/.branches/

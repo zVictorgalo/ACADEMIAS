@@ -34,3 +34,13 @@ A porta 8000 ainda tinha uma instância anterior durante a verificação; o test
 Foi feito backup local antes de aplicar a migração. Contas existentes não foram apagadas nem tiveram suas senhas alteradas. A migração preenche o dia das presenças antigas com a data original; eventuais duplicatas históricas são preservadas com dia nulo. As contas temporárias criadas apenas para verificar o navegador foram removidas após o teste.
 
 Docker não está instalado neste ambiente e não foi executado. O CI continua preparado para build, teste HTTP do container e persistência do volume. Nenhum repositório, imagem ou deploy externo foi publicado.
+
+## Cloudflare Workers e Supabase
+
+- O TypeScript passou na checagem e o Wrangler empacotou o Worker e os arquivos estáticos com `npm run deploy:dry-run`.
+- A exportação local preservou 3 contas, 2 cadastros, 1 presença e 8 alterações administrativas. A migração e a importação foram executadas em um PostgreSQL de teste, e as contagens coincidiram com o manifesto.
+- No PostgreSQL de teste, foram conferidos o isolamento da API, o cadastro pendente, a aprovação, o QR, o registro único por dia, o bloqueio e a privacidade das observações.
+- O encaminhamento do Worker foi exercitado com a função local. O teste confirmou o login numérico com hash PBKDF2 do Django, cookie seguro e rejeição de requisições de outra origem ou sem segredo de gateway.
+- O teste integrado por TCP está configurado no GitHub Actions. O sandbox bloqueou a conexão TCP local com o PostgreSQL, por isso a validação SQL local usou o modo de processo único do PostgreSQL e o teste do gateway usou uma conexão simulada.
+
+O projeto e a exportação estão preparados. O primeiro deploy e a importação para a conta Supabase devem seguir o `DEPLOY-CLOUDFLARE.md` com as credenciais configuradas diretamente nos serviços.

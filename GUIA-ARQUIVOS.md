@@ -2,6 +2,8 @@
 
 Este guia explica o que cada arquivo faz e onde mexer para alterar o projeto. A pasta principal é `academia`: é nela que ficam `manage.py`, `Dockerfile` e `README.md`, e é ela que deve ser a raiz do seu repositório no GitHub.
 
+Os arquivos novos da versão online estão explicados na seção “Arquivos desta versão” do [guia Cloudflare e Supabase](DEPLOY-CLOUDFLARE.md).
+
 ## Comece por estes arquivos
 
 | O que você quer fazer | Onde olhar |

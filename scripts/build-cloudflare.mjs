@@ -1,0 +1,11 @@
+import {build} from 'esbuild';
+import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const out=new URL('../dist/cloudflare/',import.meta.url);
+await mkdir(out,{recursive:true});
+await copyFile(new URL('../cloudflare/frontend/index.html',import.meta.url),new URL('index.html',out));
+const css=await readFile(new URL('../static/style.css',import.meta.url),'utf8');
+await writeFile(new URL('styles.css',out),css+'\n#entry-qr svg{display:block;max-width:100%;height:auto;background:white;border-radius:10px}dialog.card{max-width:520px;width:calc(100% - 32px);color:var(--text)}dialog::backdrop{background:#000a}.row-actions{flex-wrap:wrap}button:disabled{opacity:.6;cursor:wait}\n');
+await build({entryPoints:[fileURLToPath(new URL('../cloudflare/frontend/app.js',import.meta.url))],bundle:true,format:'esm',platform:'browser',target:'es2022',minify:true,outfile:fileURLToPath(new URL('app.js',out))});
+await writeFile(new URL('_headers',out),`/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: same-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'\n/index.html\n  Cache-Control: no-cache\n/app.js\n  Cache-Control: no-cache\n/styles.css\n  Cache-Control: no-cache\n`);
+console.log('Frontend Cloudflare pronto em dist/cloudflare.');

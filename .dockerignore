@@ -7,3 +7,11 @@ __pycache__
 data
 *.sqlite3*
 staticfiles
+node_modules
+dist
+.wrangler
+.cloudflare-dry-run
+.dev.vars*
+.env.supabase*
+private-exports
+supabase/.env.functions
