@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}<section class="result card mobile-entry">
+{% if result == 'granted' %}<div class="result-icon">✓</div><span class="eyebrow">ENTRADA CONFIRMADA</span><h1 class="smaller">Acesso liberado!</h1><p>Bom treino! O painel da academia recebeu a confirmação e sua presença de hoje está registrada.</p><a class="button primary full" href="{% url 'dashboard' %}">Ver meus dias de academia</a>
+{% elif result == 'denied' %}<span class="eyebrow">PROCURE A RECEPÇÃO</span><h1 class="smaller">Acesso bloqueado.</h1><p>Seu cadastro não está liberado. O painel da academia foi avisado. Nenhuma presença foi registrada.</p><a class="button secondary full" href="{% url 'dashboard' %}">Ver minha situação</a>
+{% elif expired %}<h1 class="smaller">Vamos ler o código novamente?</h1><p>Este QR Code venceu ou já foi utilizado. Aponte a câmera para o novo código no painel da academia.</p>
+{% elif admin_account %}<h1 class="smaller">Use sua conta de aluno.</h1><p>Este QR Code registra a entrada de alunos e funcionários. Saia da conta administrativa e leia o código novamente com ID e PIN de aluno.</p>
+{% else %}<span class="eyebrow">ENTRADA NA ACADEMIA</span><h1 class="smaller">Vamos treinar?</h1>{% if form %}<p>Informe seu ID e PIN. Ao entrar, sua presença será registrada se o acesso estiver liberado.</p>{% else %}<p>Olá, <strong>{{ user.first_name }}</strong>. Confirme sua entrada para avisar o painel da academia.</p>{% endif %}
+<form method="post">{% csrf_token %}{% if form %}{{ form.non_field_errors }}{% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}{% endif %}<button class="button primary full" type="submit">{% if form %}Entrar e registrar presença{% else %}Confirmar minha entrada{% endif %} →</button></form><p class="muted small">O código tem validade curta. Se vencer, leia novamente no painel.</p>{% endif %}
+</section>{% endblock %}

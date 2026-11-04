@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Pulso · Sua academia{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="topbar"><a class="brand" href="{% url 'home' %}"><span class="brand-icon">P</span>pulso<span class="brand-dot">.</span></a>
+  <nav aria-label="Principal">
+  {% if kiosk_mode %}<span class="muted small">Painel de entrada</span>{% elif user.is_authenticated %}
+    <a href="{% url 'dashboard' %}">Meu painel</a>
+    <form action="{% url 'logout' %}" method="post">{% csrf_token %}<button class="quiet" type="submit">Sair</button></form>
+  {% else %}<a href="{% url 'login' %}">Já tenho uma conta</a>{% endif %}
+  </nav>
+</header>
+<main id="conteudo" class="container">
+{% for message in messages %}<div class="notice {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}
+</main>
+<footer>pulso. <span>Mais movimento. Menos complicação.</span></footer>
+</body>
+</html>

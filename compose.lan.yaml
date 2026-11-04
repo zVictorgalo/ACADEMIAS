@@ -1,0 +1,8 @@
+# Complemento ao compose.yaml, ativado somente para testar pela rede local.
+# 0.0.0.0 aceita conexões IPv4 nas interfaces do computador: o celular pode conectar.
+# Isso não cria um endereço público nem altera configurações do roteador.
+# Use a porta 8001 no celular; a porta 8000 original continua apenas em localhost.
+services:
+  web:
+    ports:
+      - "0.0.0.0:8001:8000"

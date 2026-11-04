@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div><span class="eyebrow">SEU PRÓXIMO PASSO</span><h1>Seu ritmo.<br>Sua evolução.<br><em>Seu espaço.</em></h1><p class="lead">O treino começa com uma boa experiência. Acesse sua conta ou venha fazer parte da academia.</p>
+  <div class="actions"><a class="button primary" href="{% url 'login' %}">Entrar na minha conta <span>↗</span></a><a class="button secondary" href="{% url 'signup' %}">Sou novo na academia</a></div>
+  <p class="muted small">Cadastro simples · Aprovação pela equipe · Pronto para treinar</p></div>
+  <div class="hero-art" aria-hidden="true"><span class="art-label">UM MOVIMENTO DE CADA VEZ</span><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-bottom">COMECE.<br>CONTINUE.<br><strong>EVOLUA.</strong></span><span class="art-index">01 / PULSO</span></div>
+</section>
+<section class="steps" aria-label="Como funciona"><article><span>01</span><h3>Crie sua conta</h3><p>Receba seu ID e escolha um PIN numérico.</p></article><article><span>02</span><h3>A equipe aprova</h3><p>Acompanhe o andamento no seu painel.</p></article><article><span>03</span><h3>Registre sua entrada</h3><p>Leia o QR Code da recepção e entre com ID e PIN.</p></article></section>
+{% endblock %}
